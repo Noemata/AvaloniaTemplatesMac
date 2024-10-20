@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+    <Authors>Noemata</Authors>
+    <Copyright>Copyright (c) 2023 by Noemata</Copyright>
+    <PackageIcon>package.png</PackageIcon>
+    
+    <PackageType>Template</PackageType>
+    <PackageVersion>11.1.4</PackageVersion>
+    <PackageId>Avalonia.Templates</PackageId>
+    <Title>Avalonia Templates</Title>
+    <Description>Templates for creating Avalonia applications and libraries.</Description>
+    <PackageTags>dotnet-new;templates;avalonia</PackageTags>
+    <PackageProjectUrl>https://github.com/noemata/AvaloniaTemplates/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/noemata/AvaloniaTemplates.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <TargetFramework>netstandard2.0</TargetFramework>
+		<ContentTargetFolders>content</ContentTargetFolders>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<NoBuild>true</NoBuild>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyVersion>false</GenerateAssemblyVersion>
+		<DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <NoWarn>8021;CS2008</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+    <None Include="package.png" Pack="true" PackagePath="" />
+
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**">
+      <PackagePath>%(RelativeDir)%(Filename)%(Extension)</PackagePath>
+		</Content>
+    
+		<Content Remove="**\bin\**\*" />
+		<Content Remove="**\obj\**\*" />
+		<Content Remove="**\.*DS_Store" />
+		<Content Remove="**\.vs\**\*" />
+		<Content Remove="**\*.userprefs" />
+		<Content Remove="**\*.user" />
+		<Content Remove="content\NuGet.Config" />
+	</ItemGroup>
+</Project>

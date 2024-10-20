@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "AvaloniaUI",
+  "classifications": [ "Desktop", "Xaml", "Avalonia", "Browser", "Mobile" ],
+  "description": "A cross-platform Avalonia UI Application using the MVVM pattern targeting Desktop, Mobile and Browser with WebAssembly",
+  "name": "Avalonia Cross Platform Application",
+  "identity": "Avalonia.App.CrossPlatform.FSharp",
+  "groupidentity": "Avalonia.App.CrossPlatform",
+  "shortName": "avalonia.xplat",
+  "defaultName": "AvaloniaApplication",
+  "tags": {
+    "language": "F#",
+    "type": "project"
+  },
+  "sourceName": "AvaloniaTest",
+  "preferNameDirectory": true,
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net8.0",
+          "description": "Target net8.0"
+        },
+        {
+          "choice": "net9.0",
+          "description": "Target net9.0 previews"
+        }
+      ],
+      "replaces": "FrameworkParameter",
+      "defaultValue": "net8.0"
+    },
+    "MVVMToolkit": {
+      "type": "parameter",
+      "description": "MVVM toolkit to use in the template.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "ReactiveUI",
+          "description": "Choose ReactiveUI as MVVM toolkit in the template."
+        },
+        {
+          "choice": "CommunityToolkit",
+          "description": "Choose CommunityToolkit as MVVM toolkit in the template."
+        }
+      ],
+      "defaultValue": "CommunityToolkit"
+    },
+    "ReactiveUIToolkitChosen": {
+      "type": "computed",
+      "value": "(MVVMToolkit == \"ReactiveUI\")"
+    },
+    "CommunityToolkitChosen": {
+      "type": "computed",
+      "value": "(MVVMToolkit == \"CommunityToolkit\")"
+    },
+    "AvaloniaVersion": {
+      "type": "parameter",
+      "description": "The target version of Avalonia NuGet packages.",
+      "datatype": "text",
+      "replaces": "AvaloniaVersionTemplateParameter",
+      "defaultValue": "11.1.4"
+    },
+    "UseCompiledBindings": {
+      "type": "parameter",
+      "description": "Defines if CompiledBindings should be enabled by default in the project (only supported in 11.0 version and newer).",
+      "datatype": "bool",
+      "displayName": "Use compiled Bindings",
+      "defaultValue": "true"
+    },
+    "RemoveViewLocator": {
+      "type": "parameter",
+      "description": "Defines if your app will use default ViewLocator made by Avalonia Team or you are planning to use a custom one. Removing ViewLocator may be useful in code trimming scenarios. Default ViewLocator is not trimming-friendly.",
+      "datatype": "bool",
+      "displayName": "Remove Avalonia ViewLocator",
+      "defaultValue": "false"
+    },
+    "HostIdentifier": {
+      "type": "bind",
+      "binding": "HostIdentifier"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(RemoveViewLocator)",
+          "exclude": [
+            "AvaloniaTest/App.axaml",
+            "AvaloniaTest/ViewLocator.fs"
+          ],
+          "rename": {
+            "App.RemoveViewLocator.axaml": "App.axaml"
+          }
+        },
+        {
+          "condition": "(!RemoveViewLocator)",
+          "exclude": [
+            "AvaloniaTest/App.RemoveViewLocator.axaml"
+          ]
+        }
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    { "path": "AvaloniaTest/AvaloniaTest.fsproj" },
+    { "path": "AvaloniaTest.Android/AvaloniaTest.Android.fsproj" },
+    { "path": "AvaloniaTest.Desktop/AvaloniaTest.Desktop.fsproj" },
+    { "path": "AvaloniaTest.iOS/AvaloniaTest.iOS.fsproj" },
+    { "path": "AvaloniaTest.Browser/AvaloniaTest.Browser.fsproj" },
+    {
+      "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+      "path": "AvaloniaTest/ViewModels/MainViewModel.fs"
+    },
+    {
+      "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+      "path": "AvaloniaTest/Views/MainView.axaml"
+    }
+  ],
+  "postActions": [
+    {
+      "id": "editor",
+      "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+      "description": "Opens MainView and MainViewModel in the editor",
+      "manualInstructions": [],
+      "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+      "args": {
+        "files": "5;6"
+      },
+      "continueOnError": true
+    }
+  ]
+}

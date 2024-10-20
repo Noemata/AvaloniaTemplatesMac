@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <AvaloniaVersion>AvaloniaVersionTemplateParameter</AvaloniaVersion>
+  </PropertyGroup>
+</Project>
