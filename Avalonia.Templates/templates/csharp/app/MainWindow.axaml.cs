@@ -21,10 +21,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         set => Set(ref _message, value);
     }
 
-    public MainWindow()
-    {
-        InitializeComponent();
-    }
+    public MainWindow() => InitializeComponent();
 
     public void OnButtonClicked(object sender, RoutedEventArgs args) => Message = $"Hi number {++_count}!";
 
