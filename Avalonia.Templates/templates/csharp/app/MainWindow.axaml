@@ -12,6 +12,6 @@
 		<TextBlock Text="{Binding OSInfo}" />
 		<TextBox Text="{Binding Message}" />
 		<Button Content="Say Hi!" Click="OnButtonClicked" HorizontalAlignment="Center" />
-		<Button Content="DoIt" Command="{Binding DoIt}" HorizontalAlignment="Center" />
+		<Button Content="Do It" Command="{Binding DoIt}" HorizontalAlignment="Center" />
 	</StackPanel>
 </Window>
