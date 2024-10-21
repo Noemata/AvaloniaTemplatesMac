@@ -26,10 +26,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         InitializeComponent();
     }
 
-    public void OnButtonClicked(object sender, RoutedEventArgs args)
-    {
-        Message = $"Hi number {++_count}!";
-    }
+    public void OnButtonClicked(object sender, RoutedEventArgs args) => Message = $"Hi number {++_count}!";
 
     #region PropertyChanged
     public new event PropertyChangedEventHandler? PropertyChanged;
